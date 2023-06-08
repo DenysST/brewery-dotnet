@@ -2,20 +2,20 @@ using AutoMapper;
 using brewery.Models;
 using brewery.Models.Dto;
 using brewery.Repository.IRepository;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 
 namespace brewery.Services; 
 
 public class BeerService {
     private readonly IBeerRepository _repository;
     private readonly InventoryService _inventoryService;
+    private readonly BrewingService _brewingService;
     private readonly IMapper _mapper;
 
-    public BeerService(IBeerRepository repository, InventoryService inventoryService, IMapper mapper) {
+    public BeerService(IBeerRepository repository, InventoryService inventoryService, IMapper mapper, BrewingService brewingService) {
         _repository = repository;
         _inventoryService = inventoryService;
         _mapper = mapper;
+        _brewingService = brewingService;
     }
 
     public async Task<Beer> CreateBeer(Beer beer) {
@@ -47,6 +47,7 @@ public class BeerService {
 
     public async Task<List<BeerDto>> GetAllBeers(bool showInventoryOnHand) {
         var beers = await _repository.GetAll();
+        await _brewingService.CheckLowInventory(beers);
         var beerDtos = _mapper.Map<List<BeerDto>>(beers);
         if (showInventoryOnHand) {
             foreach (var beer in beerDtos) {
@@ -59,7 +60,9 @@ public class BeerService {
     }
 
     public async Task<Beer> GetById(Guid id) {
-        return await _repository.Get(beer => beer.Id == id);
+        var beer = await _repository.Get(beer => beer.Id == id);
+        await _brewingService.CheckLowInventory(new List<Beer>{beer});
+        return beer;
     }
 
     public async Task Delete(Beer beer) {

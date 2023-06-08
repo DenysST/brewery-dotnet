@@ -20,6 +20,7 @@ builder.Services.AddAutoMapper(typeof(MappingConfig));
 builder.Services.AddScoped<IBeerRepository, BeerRepository>();
 builder.Services.AddScoped<IInventoryRepository, InventoryRepository>();
 builder.Services.AddTransient<BeerService>();
+builder.Services.AddTransient<BrewingService>();
 builder.Services.AddTransient<InventoryService>();
 
 var app = builder.Build();
