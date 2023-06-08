@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "brewery", "brewery\brewery.csproj", "{9B31B69A-81F3-48EA-9C51-1A4FB1A9A164}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B31B69A-81F3-48EA-9C51-1A4FB1A9A164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B31B69A-81F3-48EA-9C51-1A4FB1A9A164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B31B69A-81F3-48EA-9C51-1A4FB1A9A164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B31B69A-81F3-48EA-9C51-1A4FB1A9A164}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
